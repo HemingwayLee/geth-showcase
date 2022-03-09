@@ -1,7 +1,7 @@
 const Web3 = require('web3');
 
 async function main() {
-  const w3 = new Web3(`http://${process.env.ADDRESS}:${process.env.PORT}`);
+  const w3 = new Web3(`http://${process.env.ADDRESS}:${process.env.WEB_PORT}`);
 
   w3.eth.getBlockNumber().then(console.log);
   console.log(await w3.eth.getBlockNumber());
