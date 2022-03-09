@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  mybootnode:
+    build:
+      context: .
+      dockerfile: geth.single.dockerfile
+    ports:
+      - "30303:30303"
+      - "8545:8545"
+    command: geth --datadir /tmp/data --networkid 5566 --nodekeyhex 091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322 --nat=extip:10.5.0.10 --http --http.corsdomain="*" --http.addr="0.0.0.0" 
+    networks:
+      privnet:
+        ipv4_address: 10.5.0.10
+  myapp:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    command: /home/app/init.sh
+    environment:
+      ADDRESS: "10.5.0.10"
+      WEB_PORT: "8545"
+    networks:
+      privnet:
+        ipv4_address: 10.5.0.12
+networks:
+  privnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/24
+
