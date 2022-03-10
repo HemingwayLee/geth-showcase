@@ -6,7 +6,7 @@ async function main() {
   w3.eth.getBlockNumber().then(console.log);
   console.log(await w3.eth.getBlockNumber());
 
-  w3.eth.getBalance('0x0000000000000000000000000000000000000001').then(console.log);
+  w3.eth.getBalance('0xf1A22B5b9e32582dE94BE2A968cDc78307A0F00F').then(console.log);
 }
 
 main();
